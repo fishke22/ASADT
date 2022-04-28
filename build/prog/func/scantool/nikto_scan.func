@@ -1,0 +1,33 @@
+function scantool_niktoscan {
+
+    if [ "$scantool_nikto_enable" -eq 1 ]; then
+
+        sudo nikto -port 80 -host $targetip -output $niktoscan_http_output
+
+        if [ "$scantool_nikto_forcessl_enable" -eq 1 ]; then
+
+            sudo nikto -port 443 -ssl -host $target -output $niktoscan_forcessl_output
+
+        else
+
+            echo "nikto_scan.func> This subscan is disabled"
+
+        fi
+
+        if [ "$scantool_nikto_https_enable" -eq 1 ]; then
+
+            sudo nikto -port 443 -host $targetip -output $niktoscan_https_output
+
+        else
+
+            echo "nikto_scan.func> This subscan is disabled"
+
+        fi
+
+    else
+
+        echo "nikto_scan.func> Either no Target was provided, or this scan is disabled"
+
+    fi
+
+}

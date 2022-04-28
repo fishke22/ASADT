@@ -1,0 +1,26 @@
+function wizgui_dnsmap {
+
+    WIZGUI_dnsmapgui=$(
+    zenity --forms \
+    --title="ASADT ScanTool WizGUI" \
+    --text="Enter DnsMap Scan Variables" \
+    --separator="," \
+    --add-entry="Target Domain/Hostname [Domain/HN.]: " \
+    --add-entry="Scan Output Directory [Directory]: ")
+
+    accepted=$?
+
+    if ((accepted != 0)); then
+
+        echo "wiz_dnsmap.gui> scan cancelled :("
+
+        exit 1
+
+    fi
+
+    targethostname=$(awk -F, '{print $1}' <<<$WIZGUI_dnsmapgui)
+    output_main=$(awk -F, '{print $2}' <<<$WIZGUI_dnsmapgui)
+
+}
+
+

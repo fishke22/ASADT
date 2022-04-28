@@ -1,0 +1,26 @@
+function wizgui_dmitry {
+
+    WIZGUI_dmitrygui=$(
+    zenity --forms \
+    --title="ASADT ScanTool WizGUI" \
+    --text="Enter Dmitry Scan Variables" \
+    --separator="," \
+    --add-entry="Target IP [IP Addr.]: " \
+    --add-entry="Scan Output Directory [Directory]: ")
+
+    accepted=$?
+
+    if ((accepted != 0)); then
+
+        echo "wiz_dmitry.gui> scan cancelled :("
+
+        exit 1
+
+    fi
+
+    targetip=$(awk -F, '{print $1}' <<<$WIZGUI_dmitrygui)
+    output_main=$(awk -F, '{print $2}' <<<$WIZGUI_dmitrygui)
+
+}
+
+

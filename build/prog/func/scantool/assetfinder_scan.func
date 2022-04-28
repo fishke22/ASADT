@@ -1,0 +1,38 @@
+function scantool_assetfinderscan {
+
+    if [ "$scantool_assetfinder_enable" -eq 1 ]; then
+
+        if [ "$scantool_assetfinder_hostname_enable" -eq 1 ]; then
+
+            if [ -z "$targethostname" ]; then
+
+                sudo assetfinder $targetip
+                sudo echo $(assetfinder $targetip) > $assetfinderscan_default_output
+
+            else
+
+                if [ -z "$targetip" ]; then
+
+                    sudo assetfinder $targethostname
+                    sudo echo $(assetfinder $targethostname) > $assetfinderscan_hostname_output
+
+                else
+
+                    sudo assetfinder $targetip
+                    sudo echo $(assetfinder $targetip) > $assetfinderscan_default_output
+                    sudo assetfinder $targethostname
+                    sudo echo $(assetfinder $targethostname) > $assetfinderscan_hostname_output
+
+                    fi
+
+                fi
+
+            fi
+
+        else
+
+            echo "assetfinder_scan.func> Either no Target/Hostname was provided, or this scan is disabled"
+
+        fi
+
+}

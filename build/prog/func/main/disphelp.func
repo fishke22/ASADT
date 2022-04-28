@@ -1,0 +1,14 @@
+function disphelp {
+
+    echo ""
+    echo "ASADT SHORT HELPDOC"
+    echo "--------------------------------------------"
+
+    echo "Version: $appversion_long"
+    echo "USAGE:"
+    echo "Execute: $0 [-v] [-h] [--update] [--scantool+arg] [--brutetool+arg] [--exemkr+arg]"
+    echo ""
+    echo "More information is avialable on the ASADT Wiki!"
+    echo "https://github.com/odf-community/ASADT/wiki/"
+
+}

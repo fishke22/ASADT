@@ -1,0 +1,68 @@
+function scantool_nmapscan {
+
+    if [ "$scantool_nmap_enable" -eq 1 ]; then
+
+        echo "nmap_scna.func> PRE-INIT NMAP NSE DB UPDATE! [ctrl+c to cancel]"
+
+        sudo nmap -v --script-updatedb
+        echo ""
+
+        echo "nmap_scan.func> Starting nmap scan on $targetip"
+        echo "nmap_scan.func> Using nsetype: $nmapscan_nsetype_define"
+        echo "nmap_scan.func> Using methods: $nmapscan_methods_define"
+        echo "nmap_scan.func> Output Filenames: "$nmapscan_fastscan_output" "$nmapscan_traceroute_output" "$nmapscan_fullscan_output" "$nmapscan_nsescript_output""
+        echo ""
+        echo "If any info is incorrect please press ctrl+c NOW!"
+
+        sleep 10
+
+        echo "nmap_scan.func> POPULATING FASTSCAN DATA! [ctrl+c to cancel]"
+
+        sudo nmap -F -oN $nmapscan_fastscan_output $targetip
+
+        echo ""
+        echo "nmap_scan.func> POPULATING TRACEROUTE DATA"
+
+        sudo nmap --traceroute -oN $nmapscan_traceroute_output $targetip
+
+        echo ""
+        echo "nmap_scan.func> POPULATING FULL NMAP SCAN! [ctrl+c to cancel]"
+
+        sudo nmap -v -p 1-65535 -sV -O -sS -T5 -oN $nmapscan_fullscan_output $targetip
+
+        echo ""
+        echo "nmap_scan.func> POPULATING NSE SCRIPT SCAN! [ctrl+c to cancel]"
+
+        if [ "$scripttrace" -eq 1 ]; then
+
+            echo "SCRIPTTRACE ENABLED"
+            scripttracecmd="--script-trace"
+
+        else
+
+            echo "st=0"
+
+        fi
+
+        echo "nmap_scan.func> NSE TYPE: $nmapscan_nsetype_define"
+        echo "nmap_scan.func> NSE DATA TABLE: $nmapscan_methods_define"
+        echo "nmap_scan.func> SCRIPTTRACE: $scripttrace"
+
+        if [ "$nmapscan_nsetype_define" -eq 1 ]; then
+
+            sudo nmap -v --script="$nmapscan_methods_define" $scripttracecmd -oN $nmapscan_nsescript_output $targetip
+
+        else
+
+            sudo nmap -v --script=$nmapscan_methods_define $scripttracecmd -oN $nmapscan_nsescript_output $targetip
+
+        fi
+
+
+    else
+
+        echo "nmap_scan.func> Either no Target was provided, or this scan is disabled"
+
+    fi
+
+}

@@ -1,0 +1,30 @@
+function wizgui_nmap {
+
+    WIZGUI_nmapgui=$(
+    zenity --forms \
+    --title="ASADT ScanTool WizGUI" \
+    --text="Enter Nmap Scan Variables" \
+    --separator="," \
+    --add-entry="Target IP [IP Addr.]: " \
+    --add-entry="NSE Script Scan Type [1/0]: " \
+    --add-entry="NSE Script Scan Methods [Method(s)]: " \
+    --add-entry="Scan Output Directory [Directory]: ")
+
+    accepted=$?
+
+    if ((accepted != 0)); then
+
+        echo "wiz_namp.gui> scan cancelled :("
+
+        exit 1
+
+    fi
+
+    targetip=$(awk -F, '{print $1}' <<<$WIZGUI_nmapgui)
+    nmapscan_nsetype_define=$(awk -F, '{print $2}' <<<$WIZGUI_nmapgui)
+    nmapscan_methods_define=$(awk -F, '{print $3}' <<<$WIZGUI_nmapgui)
+    output_main=$(awk -F, '{print $4}' <<<$WIZGUI_nmapgui)
+
+}
+
+

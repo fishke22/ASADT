@@ -1,0 +1,122 @@
+function parsevar_scantool {
+
+if [ -z "$targetip" ]; then
+
+    if [ -z "$targethostname" ]; then
+
+        echo "error> call for var "'"$targetip"'" @ <intprogvar> was unsucessfull."
+        echo "error> call for var "'"$targethostname"'" @ <intprogvar> was unsucessfull."
+        echo "errorinfo> NO TARGET WAS DEFINED IN WIZARD"
+
+        exit
+
+    fi
+
+fi
+
+if [ -z "$output_main" ]; then
+
+        echo "error> call for var "'"$output_main"'" @ <intprogvar> was unsucessfull."
+        echo "errorinfo> NO OUTPUT DIRECTORY WAS DEFINED IN WIZARD"
+        echo "cnf_fault> defaulting to user documents directory"
+
+        if [ -z "$targethostname" ]; then
+
+            if [ "$SUDO_USER" = "root" ]; then
+
+                output_main=/"$SUDO_USER"/asadt_scans/"$targetip"
+
+            else
+
+                output_main=/home/"$SUDO_USER"/Documents/asadt_scans/"$targetip"
+
+            fi
+
+        else
+
+            if [ "$SUDO_USER" = "root" ]; then
+
+                output_main=/"$SUDO_USER"/asadt_scans/"$targethostname"
+
+            else
+
+                output_main=/home/"$SUDO_USER"/Documents/asadt_scans/"$targethostname"
+
+            fi
+
+        fi
+
+        mkdir -p $output_main
+
+        sleep 1
+
+        if [ -d "$output_main" ]; then
+
+            cd $output_main
+
+        else
+
+            echo "error> execute for func 'setmainout' "'"$output_main"'" @ <intprogvar> was unsucessfull."
+            echo "errorinfo> OUTPUT DIRECTORY IS INACCESSABLE"
+
+            exit
+
+        fi
+
+else
+
+    mkdir -p $output_main
+
+    sleep 1
+
+    if [ -d "$output_main" ]; then
+
+        cd $output_main
+
+    else
+
+        echo "error> execute for func 'setmainout' "'"$output_main"'" @ <intprogvar> was unsucessfull."
+        echo "errorinfo> OUTPUT DIRECTORY IS INACCESSABLE"
+
+        exit
+
+    fi
+
+fi
+
+if [ "$scantool_nmap_enable" -eq "0" ]; then
+
+    scantool_nmap_enable=0
+
+else
+
+    if [ -z "$nmapscan_methods_define" ]; then
+
+        nmapscan_methods_define="default"
+
+        echo "error> call for var "'"$nmapscan_methods_define"'" @ <intprogvar> was unsucessfull"
+        echo "cnf_fault> defaulting to variable "'"nmapscan_methods_define"'" in <intprogvar>"
+
+    fi
+
+    if [ -z "$nmapscan_nsetype_define" ]; then
+
+        nmapscan_nsetype_define="0"
+
+        echo "error> call for var "'"$nmapscan_nsetype_define"'" @ <intprogvar> was unsucessfull"
+        echo "cnf_fault> defaulting to variable to switch "'"0"'""
+
+    fi
+
+    if [ -z "$scripttrace" ]; then
+
+        scripttrace="0"
+
+        echo "error> call for var "'"$scripttrace"'" @ <intprogvar> was unsucessfull"
+        echo "cnf_fault> defaulting to variable to switch "'"0"'""
+
+    fi
+
+fi
+
+}
