@@ -5,7 +5,7 @@ function wizgui_assetfinder {
     --title="ASADT ScanTool WizGUI" \
     --text="Enter AssetFinder Scan Variables" \
     --separator="," \
-    --add-entry="Target IP [IP Addr.]: " \
+    --add-entry="Target Hostname/IP [Hostname/IP]: " \
     --add-entry="Scan Output Directory [Directory]: ")
 
     accepted=$?
@@ -18,7 +18,21 @@ function wizgui_assetfinder {
 
     fi
 
-    targetip=$(awk -F, '{print $1}' <<<$WIZGUI_assetfindergui)
+    targethostname=$(awk -F, '{print $1}' <<<$WIZGUI_assetfindergui)
     output_main=$(awk -F, '{print $2}' <<<$WIZGUI_assetfindergui)
+
+    if [ -z "$targethostname" ]; then
+
+        echo "Missing Input... Please Provide Target Hostname OR IP Address"
+        exit 3
+
+    fi
+
+    if [ -z "$output_main" ]; then
+
+        echo "Missing Input... Please Provide Output Directory"
+        exit 3
+
+    fi
 
 }

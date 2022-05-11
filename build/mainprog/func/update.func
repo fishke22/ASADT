@@ -1,0 +1,43 @@
+function chkupdate {
+
+    update_url="https://raw.githubusercontent.com/odf-community/ASADT/main/toolupdate.info"
+
+	updatefile="$PWD/toolupdate.info"
+
+	sudo wget -P "$PWD" $update_url
+
+	source $updatefile
+
+    if [ -z "$newversion" ]; then
+
+        echo "update.func> Error: Failed To Calculate Diffs"
+        echo "update.func> Info: Make Sure 'toolupdate.info' is downloaded and accessable in $updatefile"
+
+        exit
+
+    else
+
+        if [ "$newversion" = "$appversion" ]; then
+
+            echo "INSTALLED VERSION: $appversion"
+            echo "CURRENT SOURCE VERSION: $newversion"
+            echo "ASADT IS UP TO DATE!"
+
+            sudo rm $updatefile
+
+        else
+
+            echo "VERSION DIFF DETECTED"
+            echo "$appversion --> $newversion"
+            echo "ASADT SEEMS TO BE OUT OF DATE..."
+            echo ""
+            echo ""
+            echo "For More Info, Go To 'https://github.com/odf-community/ASADT/main'"
+
+            sudo rm $updatefile
+
+        fi
+
+    fi
+
+}

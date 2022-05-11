@@ -1,181 +1,210 @@
 #!/bin/bash
-# ASADT Mark II
-# Script Developed & Maintained by ODFSEC
-# Script Version: 1.0.0
 
+# Assistive Search And Discovery Tool MARK II
+# Script Version 1.0.3
 
-# Internal Variable Table
+# This Script Is Developed & Maintained By The
+# Onetrak Digital Forensics Corportaion
 
-    userregfile="/home/$SUDO_USER/.asadt"
-    userregbackup="/root/.asadt"
+# PROGVAR
+cmdvar1="$1"
+cmdvar2="$2"
+userreg="/root/.asadt"
 
-    initprog="initprog>"
-    userreg="userreg>"
+# INTPROG FUNCTIONS
+function userstatus {
 
-    cmd1=$1
-    cmd2=$2
-    cmd3=$3
+    if [ "$UID" = "0" ]; then
 
-# Internal Function Library
+        current_su="true"
 
-    function userstat {
+    else
 
-        if [ "$USER" = "root" ]; then
+        echo "$0 Requires Sudo Privledges"
+        exit 0
 
-            checkpass=1
-
-        else
-
-            echo "$initprog Please run 'sudo $0'"
-
-            exit 401
-
-        fi
-
-    }
-
-    function getuserreg {
-
-        if [ -f "$userregfile" ]; then
-
-            source $userregfile
-
-            elif [ -f "$userregbackup" ]; then
-
-                source $userregbackup
-
-            else
-
-                echo "$initprog Can't access the 'userreg' file from its default location."
-                echo "$initprog Try Executing: 'sudo cp /root/.asadt /home/$SUDO_USER/.asadt'"
-                echo "$initprog This will copy the root backup to the missing or corrupt user one."
-
-                exit
-
-        fi
-
-    }
-
-    function sourceprog {
-
-        source $progroot/func/main/dispversion.func
-        source $progroot/func/main/disphelp.func
-        source $progroot/func/main/update.func
-        source $progroot/func/main/parsevar_scantool.func
-
-        source $progroot/func/scantool/assetfinder_scan.func
-        source $progroot/func/scantool/dmitry_scan.func
-        source $progroot/func/scantool/dnsmap_scan.func
-        source $progroot/func/scantool/nikto_scan.func
-        source $progroot/func/scantool/nmap_scan.func
-
-        source $cnfroot/scantool/scantool.cnf
-
-        source $progroot/gui/scantool/wiz_nmap.gui
-        source $progroot/gui/scantool/wiz_dmitry.gui
-        source $progroot/gui/scantool/wiz_assetfinder.gui
-        source $progroot/gui/scantool/wiz_nikto.gui
-        source $progroot/gui/scantool/wiz_dnsmap.gui
-
-    }
-
-    function passvar_mainprog {
-
-        if [ -z "$cmd1" ]; then
-
-            echo "Missing argument after '$0'"
-
-            exit 404
-
-        fi
-
-        if [ "$cmd1" = "-v" ]; then
-
-            dispversion
-
-            exit 99
-
-            elif [ "$cmd1" = "-h" ]; then
-
-                disphelp
-
-                elif [ "$cmd1" = "--update" ]; then
-
-                    update
-
-                    exit
-
-                    elif [[ "$cmd1" = "--scantool" && "$cmd2" = "nmap" ]]; then
-
-                        wizgui_nmap
-
-                        parsevar_scantool
-
-                        scantool_nmapscan
-
-                        exit
-
-                        elif [[ "$cmd1" = "--scantool" && "$cmd2" = "dmitry" ]]; then
-
-                            wizgui_dmitry
-
-                            parsevar_scantool
-
-                            scantool_dmitryscan
-
-                            exit
-
-                            elif [[ "$cmd1" = "--scantool" && "$cmd2" = "nikto" ]]; then
-
-                                wizgui_nikto
-
-                                parsevar_scantool
-
-                                scantool_niktoscan
-
-                                exit
-
-                                elif [[ "$cmd1" = "--scantool" && "$cmd2" = "assetfinder" ]]; then
-
-                                    wizgui_assetfinder
-
-                                    parsevar_scantool
-
-                                    scantool_assetfinderscan
-
-                                    exit
-
-                                    elif [[ "$cmd1" = "--scantool" && "$cmd2" = "dnsmap" ]]; then
-
-                                        wizgui_dnsmap
-
-                                        parsevar_scantool
-
-                                        scantool_dnsmapscan
-
-                                        exit
-
-        else
-
-            echo "passvar_mainprog.intfunc> Error, uknown command '$0 $cmd1 $cmd2 $cmd3'"
-
-            exit 404
-
-        fi
-
-    }
-
-#PROGMAIN STACK 1
-
-progmain () {
-
-userstat
-getuserreg
-sourceprog
-passvar_mainprog
+    fi
 
 }
 
-progmain
+function getuserreg {
 
-exit 999
+    if [ -f "$userreg" ]; then
+
+        source $userreg
+
+        #MAIN PROGRAM DATA LIB
+        source $approot/mainprog/func/disphelp.func
+        source $approot/mainprog/func/dispversion.func
+        source $approot/mainprog/func/update.func
+
+        # SCANTOOL LIB
+        source $approot/modules/scantool/func/assetfinder_scan.func
+        source $approot/modules/scantool/func/dmitry_scan.func
+        source $approot/modules/scantool/func/dnsmap_scan.func
+        source $approot/modules/scantool/func/nikto_scan.func
+        source $approot/modules/scantool/func/nmap_scan.func
+        source $approot/modules/scantool/gui/wiz_assetfinder.gui
+        source $approot/modules/scantool/gui/wiz_dmitry.gui
+        source $approot/modules/scantool/gui/wiz_dnsmap.gui
+        source $approot/modules/scantool/gui/wiz_nikto.gui
+        source $approot/modules/scantool/gui/wiz_nmap.gui
+        source $approot/config/scantool.config
+
+        # EXEMKR LIB
+        source $approot/modules/exemkr/func/msfpc_exemkr.func
+        source $approot/modules/exemkr/gui/wiz_msfpc.gui
+        source $approot/config/exemkr.config
+
+    else
+
+        echo "FATAL PROGRAM ERROR!"
+        echo ""
+        echo "MISSING USER REGISTRY FILE @ /root/.asadt"
+        echo "ENSURE YOU HAVE PROPERLY INSTALLED THE PROGRAM!"
+
+    fi
+
+}
+
+function mainout {
+
+    if [ -d "$output_main" ]; then
+
+        echo "OK"
+        cd "$output_main"
+
+    else
+
+        echo "Looks like '$output_main' Doesn't Exist..."
+        echo -n "Press [ENTER] to create the directory or "'"CTRL+C"'" to cancel"
+        read nulkey
+        mkdir -p "$output_main"
+        cd "$output_main"
+
+    fi
+
+}
+
+function passvar_cmd {
+
+    if [ "$cmdvar1" = "-v" ]; then
+
+        dispversion
+
+        exit
+
+    fi
+
+    if [ "$cmdvar1" = "-h" ]; then
+
+        disphelp
+
+        exit
+
+    fi
+
+    if [ "$cmdvar1" = "-hh" ]; then
+
+        disphelp_full
+
+        exit
+
+    fi
+
+    if [ "$cmdvar1" = "--updatecheck" ]; then
+
+        chkupdate
+
+        exit
+
+    fi
+
+    if [[ "$cmdvar1" = "--scantool" && "$cmdvar2" = "assetfinder" ]]; then
+
+        wizgui_assetfinder
+        mainout
+        scantool_assetfinderscan
+
+        exit
+
+    fi
+
+    if [[ "$cmdvar1" = "--scantool" && "$cmdvar2" = "dmitry" ]]; then
+
+        wizgui_dmitry
+        mainout
+        scantool_dmitryscan
+
+        exit
+
+    fi
+
+    if [[ "$cmdvar1" = "--scantool" && "$cmdvar2" = "dnsmap" ]]; then
+
+        wizgui_dnsmap
+        mainout
+        scantool_dnsmapscan
+
+        exit
+
+    fi
+
+    if [[ "$cmdvar1" = "--scantool" && "$cmdvar2" = "nikto" ]]; then
+
+        wizgui_nikto
+        mainout
+        scantool_niktoscan
+
+        exit
+
+    fi
+
+    if [[ "$cmdvar1" = "--scantool" && "$cmdvar2" = "nmap" ]]; then
+
+        wizgui_nmap
+        mainout
+        scantool_nmapscan
+
+        exit
+
+    fi
+
+    if [ "$cmdvar1" = "--exemkr" ]; then
+
+        wizgui_msfpc_custom
+
+        mainout
+
+        exemkr_msfpc
+
+        exit
+
+    fi
+
+
+}
+
+#MAINPROG STACK 1
+mainprog () {
+
+userstatus
+getuserreg
+passvar_cmd
+
+}
+
+mainprog
+
+# SCANTOOL CLAUSE
+if [[ "$cmdvar1" = "--scantool" && -z "$cmdvar2" ]]; then
+
+    echo "Missing argument "'"modulename"'" after '--scantool'"
+    echo "Need more help? Run $0 -h"
+    exit
+
+fi
+
+# UKNOWN CLAUSE
+echo "Error: Unknown Command... $0 $1 $2"
+exit 0

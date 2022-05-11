@@ -1,0 +1,16 @@
+function scantool_dnsmapscan {
+
+    if [ "$scantool_dnsmap_enable" -eq 1 ]; then
+
+        dnsmap $targethostname -c $dnsmapscan_hostname_output
+
+    else
+
+        echo "dnsmap_scan.func> Either no hostname was provided, or this scan is disabled"
+
+    fi
+
+}
+
+
+

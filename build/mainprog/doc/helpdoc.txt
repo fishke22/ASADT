@@ -1,0 +1,65 @@
+ASADT MARK II VERSION 1.0.3 HELP DOCUMENT
+
+Execute: ./asadt.sh [-v] [-h] [-hh] [--updatecheck] [--scantool] [--exemkr]
+
+ [-v]: Shows current version information, and a cool banner ;)
+
+ [-h]: Shows the short help document
+
+ [-hh]: Displays the entire help document on terminal using "cat" command
+
+ [--updatecheck]: Checks the program version diffs against newer versions
+                  using "wget" command. If an update is found, you will be notified on screen.
+                  In the event that a user is updating, you may be required to remove the original script
+                  folder from your desired install location to fresh install ASADT. This will require root
+                  or sudo privileges.
+                  DO NOT REMOVE THE USER REGISTRY KEY FILE, IT WILL BE UPDATED AFTER RUNNING ANY NEWER VERSION OF
+                  ASADT'S BUILD SCRIPT.
+
+ [--scantool]: Requires tool option post to setting this argument.
+               Includes "nmap", "nikto", "dnsmap", "dmitry" & "assetfinder"
+               to run a standalone scan, include the scan module name
+               after setting the above argument. Ensure all module names
+               are kept lowercase (ex. --scantool nmap)
+
+               NMAP: We have attempted to integrate NMap's prototype NSE Script Scanning
+               into ASADT. The NSE Script options within the Scantool WizGUI are represented
+               as switches (0/1) that define what NSE Script Reference Type is to be used when
+               running a NMap scan. The 1 switch represents table commands, such as "not intrusive"
+               and the 0 switch represents using absolute method names like "default", "safe" etc.
+               only place switches in the "NSE Type" field, and place the methods or table input into
+               the "NSE Methods" field. Inputting multiple METHOD options will require the use of
+               separatory commas (ex. safe,vuln). All input must remain lowercase.
+               More information on this subject can be found @
+               https://nmap.org/book/nse-usage.html
+
+ [--exemkr]: Added in MII-v1.0.3, this tool combines ASADT with the already existent
+             MS.F.P.C [Metasploit Framework Payload Creator] to generate both a MSF
+             payload and a MSF payload handler for device exploitation and
+             penetration testing. For more help with the settings of this tool,
+             execute "msfpc -h"
+
+
+ EDITING THE CONFIGURATION
+
+ #########################################################################
+ #                                                                       #
+ # Script Enablers | Enables or Disables Specific Modules                #
+ #                                                                       #
+ # Script Variables | Variables, Such as Filenames or Scan Settings      #
+ #                                                                       #
+ #########################################################################
+
+ The configuration can be edited only by those possessing root privileges.
+ Some text editors may not be able to edit the config and save it as the
+ root user, we recommend using "sudo nano" to edit and save the configuration.
+
+ There are 2 configuration pages as of version 1.0.3, these are
+ "exemkr.config" and "scantool.config", and they are located within
+ ASADT program folder under the directory "config".
+
+ If you need assistance finding the location in which you installed ASADT,
+ please refer to the user registry key file located at "/root/.asadt", referred
+ location is listed as "approot='*dirname*'".
+
+ DO NOT EDIT THE USER REGISTRY KEY FILE UNLESS CHANGES ARE ABSOLUTELY NECESSARY!

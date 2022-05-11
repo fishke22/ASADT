@@ -21,6 +21,20 @@ function wizgui_dnsmap {
     targethostname=$(awk -F, '{print $1}' <<<$WIZGUI_dnsmapgui)
     output_main=$(awk -F, '{print $2}' <<<$WIZGUI_dnsmapgui)
 
+    if [ -z "$targethostname" ]; then
+
+        echo "Missing Input... Please Provide Target Hostname"
+        exit 3
+
+    fi
+
+    if [ -z "$output_main" ]; then
+
+        echo "Missing Input... Please Provide Output Directory"
+        exit 3
+
+    fi
+
 }
 
 

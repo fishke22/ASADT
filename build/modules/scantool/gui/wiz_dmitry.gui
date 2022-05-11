@@ -21,6 +21,20 @@ function wizgui_dmitry {
     targetip=$(awk -F, '{print $1}' <<<$WIZGUI_dmitrygui)
     output_main=$(awk -F, '{print $2}' <<<$WIZGUI_dmitrygui)
 
+    if [ -z "$targetip" ]; then
+
+        echo "Missing Input... Please Provide Target IP"
+        exit 3
+
+    fi
+
+    if [ -z "$output_main" ]; then
+
+        echo "Missing Input... Please Provide Output Directory"
+        exit 3
+
+    fi
+
 }
 
 

@@ -25,6 +25,30 @@ function wizgui_nmap {
     nmapscan_methods_define=$(awk -F, '{print $3}' <<<$WIZGUI_nmapgui)
     output_main=$(awk -F, '{print $4}' <<<$WIZGUI_nmapgui)
 
+    if [ -z "$targetip" ]; then
+
+        echo "Missing Input... Please Provide Target IP"
+        exit 3
+
+    fi
+
+    if [ -z "$nmapscan_nsetype_define" ]; then
+
+        nmapscan_nsetype_define=0
+
+    fi
+
+    if [ -z "$nmapscan_methods_define" ]; then
+
+        nmapscan_methods_define=default
+
+    fi
+
+    if [ -z "$output_main" ]; then
+
+        echo "Missing Input... Please Provide Output Directory"
+        exit 3
+
+    fi
+
 }
-
-

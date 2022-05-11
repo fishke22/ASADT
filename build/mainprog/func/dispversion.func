@@ -1,0 +1,9 @@
+function dispversion {
+
+banner="$approot/mainprog/ui/banner.txt"
+
+cat $banner
+
+echo "                 $appversion_long"
+
+}

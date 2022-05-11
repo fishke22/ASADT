@@ -1,0 +1,15 @@
+function scantool_assetfinderscan {
+
+    if [ "$scantool_assetfinder_enable" -eq 1 ]; then
+
+
+        sudo assetfinder $targethostname
+        sudo echo $(assetfinder $targethostname) > $assetfinderscan_default_output
+
+    else
+
+        echo "assetfinder_scan.func> Either no IP/Hostname was provided, or this scan is disabled"
+
+    fi
+
+}

@@ -1,9 +1,0 @@
-function dispversion {
-
-banner="$progroot/func/main/banner.txt"
-
-cat $banner
-
-echo "          release-$appversion | $appversion_long"
-
-}

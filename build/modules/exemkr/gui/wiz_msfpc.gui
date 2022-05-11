@@ -1,0 +1,89 @@
+function wizgui_msfpc_custom {
+
+    WIZGUI_exemkr_custom=$(
+    zenity --forms \
+    --title="ASADT Custom Payload Generator WizGUI" \
+    --text="Enter Payload Generator Variables" \
+    --separator="," \
+    --add-entry="HOST IP/Interface ID [IP/eth0]: " \
+    --add-entry="Payload Type [windows/.exe etc.]: " \
+    --add-entry="Payload CMD Shell [cmd/msf]: " \
+    --add-entry="Payload Port Number [Port #]: " \
+    --add-entry="Payload Connection Type [reverse/bind]: " \
+    --add-entry="Payload Staging Type [staged/stageless]: " \
+    --add-entry="Payload Link Type [tcp/https etc.]: " \
+    --add-entry="Payload Output Directory [Directory]: ")
+
+    accepted=$?
+
+    if ((accepted != 0)); then
+
+        echo "wiz_msfpc.gui> operation cancelled :("
+
+        exit 1
+
+    fi
+
+    pnetinterfaceid=$(awk -F, '{print $1}' <<<$WIZGUI_exemkr_custom)
+    ptype=$(awk -F, '{print $2}' <<<$WIZGUI_exemkr_custom)
+    pcmd=$(awk -F, '{print $3}' <<<$WIZGUI_exemkr_custom)
+    phport=$(awk -F, '{print $4}' <<<$WIZGUI_exemkr_custom)
+    pconnecttype=$(awk -F, '{print $5}' <<<$WIZGUI_exemkr_custom)
+    pstagetype=$(awk -F, '{print $6}' <<<$WIZGUI_exemkr_custom)
+    plinktype=$(awk -F, '{print $7}' <<<$WIZGUI_exemkr_custom)
+    output_main=$(awk -F, '{print $8}' <<<$WIZGUI_exemkr_custom)
+
+    # LARGE AWK ORDERS MAY LAG OLDER SYSTEMS
+    # SLEEP IS FOR OLDER KERNELS
+    sleep 3
+
+    if [ -z "$pnetinterfaceid" ]; then
+
+        echo "Missing Input... Please Provide HOST Network Interface/IP"
+        exit 3
+
+    fi
+
+    if [ -z "$ptype" ]; then
+
+        echo "Missing Input... Please Provide Payload Type"
+        exit 3
+
+    fi
+
+    if [ -z "$pcmd" ]; then
+
+        echo "Missing Input... Please Provide Payload Shell Interface Type"
+        exit 3
+
+    fi
+
+    if [ -z "$pconnecttype" ]; then
+
+        echo "Missing Input... Please Provide Payload Connection Type"
+        exit 3
+
+    fi
+
+    if [ -z "$pstagetype" ]; then
+
+        echo "Missing Input... Please Provide Payload Staging Type"
+        exit 3
+
+    fi
+
+    if [ -z "$plinktype" ]; then
+
+        echo "Missing Input... Please Provide Payload Link Type"
+        exit 3
+
+    fi
+
+    if [ -z "$output_main" ]; then
+
+        echo "Missing Input... Please Provide Output Directory"
+        exit 3
+
+    fi
+
+}

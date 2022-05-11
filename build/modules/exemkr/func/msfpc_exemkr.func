@@ -1,0 +1,19 @@
+function exemkr_msfpc {
+
+    if [ "$exemkr_msfpc_enable" -eq "1" ]; then
+
+        PWD=$output_main
+        cd $output_main
+
+        echo "msfpc $ptype $pnetinterface $pcmd $pconnecttype $pstagetype $plinktype $exemkr_msfpc_verbosity_enabler"
+        echo ""
+        msfpc $ptype $pnetinterface $pcmd $phport $pconnecttype $pstagetype $plinktype $exemkr_msfpc_verbosity_enabler
+
+    else
+
+        echo "This module is either misconfigured or disabled in the configuration"
+        exit
+
+    fi
+
+}
