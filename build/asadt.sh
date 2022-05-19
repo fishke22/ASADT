@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Assistive Search And Discovery Tool MARK II
-# Script Version 1.0.3
+# Script Version 1.0.4
 
 # This Script Is Developed & Maintained By The
 # Onetrak Digital Forensics Corportaion
@@ -199,12 +199,13 @@ mainprog
 # SCANTOOL CLAUSE
 if [[ "$cmdvar1" = "--scantool" && -z "$cmdvar2" ]]; then
 
-    echo "Missing argument "'"modulename"'" after '--scantool'"
-    echo "Need more help? Run $0 -h"
-    exit
+    echo "Prog_Error: Missing argument "'"modulename"'" after '--scantool'"
+    echo "Prog_HelpMsg: Need more help? Run $0 -h or -hh"
+    exit 0
 
 fi
 
 # UKNOWN CLAUSE
-echo "Error: Unknown Command... $0 $1 $2"
+echo "Prog_Error: Unknown Command... $0 $1 $2"
+echo "Prog_HelpMsg: Need more help? Run $0 -h or -hh"
 exit 0

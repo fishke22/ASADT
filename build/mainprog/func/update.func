@@ -17,24 +17,52 @@ function chkupdate {
 
     else
 
-        if [ "$newversion" = "$appversion" ]; then
+        if [ "$newversion" = "$ppversion" ]; then
+
+            sudo rm $updatefile
 
             echo "INSTALLED VERSION: $appversion"
             echo "CURRENT SOURCE VERSION: $newversion"
             echo "ASADT IS UP TO DATE!"
 
-            sudo rm $updatefile
-
         else
+
+            sudo rm $updatefile
 
             echo "VERSION DIFF DETECTED"
             echo "$appversion --> $newversion"
             echo "ASADT SEEMS TO BE OUT OF DATE..."
             echo ""
             echo ""
-            echo "For More Info, Go To 'https://github.com/odf-community/ASADT/main'"
+            echo "Would you like to auto-update from the main repository?"
+            echo "https://github.com/odf-community/ASADT | GIT 'MAIN'"
+            echo ""
+            echo -n "Update Program? [y/n] "
+            read updateask
 
-            sudo rm $updatefile
+            if [ -z "$updateask" ]; then
+
+                echo "No Input Provided... Quitting."
+
+                exit 3
+
+            fi
+
+            if [ "$updateask" = "y" ]; then
+
+                source "$approot/mainprog/ui/updater.uifunc"
+
+                showzpromt
+                update_asadt_mainprogdat_safetygit
+
+            else
+
+                exit 999
+
+            fi
+
+
+
 
         fi
 

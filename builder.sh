@@ -1,13 +1,13 @@
 #!/bin/bash
-# Assistive Search And Discovery Tool Mark II v102 Builder Application
+# Assistive Search And Discovery Tool Mark II v104 Builder Application
 # Licensed Under GNU GENERAL PUBLIC LICENSE
 # Script Developed & Maintained By The
 # Onetrak Digital Forensics Corporation
 
 
-builder_version="1.0.1"
-buildv="v1.0.3"
-buildv_long="MARK II BETA | v 1.0.3"
+builder_version="3.0.0"
+buildv="v1.0.4"
+buildv_long="MARK II BETA | v 1.0.4"
 
 function checkroot {
 
@@ -34,6 +34,7 @@ function getrolling {
         if [ "$VERSION_CODENAME" = "kali-rolling" ]; then
 
             echo "os_v_codename> "'"kali-rolling"'" detected!"
+            echo ""
 
         else
 
@@ -41,13 +42,13 @@ function getrolling {
             echo ""
             echo "os_v_codename> It looks like kali-rolling wasnt detected!"
             echo "               If you currently are not running Kali-OS, please"
-            echo "               ensure all of the necesary apt-sources are installed"
+            echo "               ensure all of the necessary apt-sources are installed"
             echo "               either via kali's deb repo or via the open internet."
             echo ""
-            echo "dispmsg> This message will dissmiss in 15 seconds!"
+            echo "dispmsg> This message will dissmiss in 30 seconds!"
             echo ""
 
-            sleep 15
+            sleep 30
 
         fi
 
@@ -72,7 +73,7 @@ function buildscript {
 
         echo "No Input Provided!"
 
-        exit
+        exit 3
 
     fi
 
@@ -83,7 +84,7 @@ function buildscript {
     else
 
         echo "Looks like this directory doesnt exist!"
-        echo -n "Would you like to create it? [y/n]"
+        echo -n "Would you like to create it? [y/n] "
         read mkdiryn
 
         if [ "$mkdiryn" = "y" ]; then
@@ -93,7 +94,8 @@ function buildscript {
         else
 
             echo "Function Canceled!"
-            exit
+
+            exit 3
 
         fi
 
@@ -161,15 +163,97 @@ function checkapt {
 
 }
 
+function updateoriginshell {
+
+    if [ -f "/root/.asadt" ]; then
+
+        echo "It seems that ASADT is already installed on this system"
+        echo -n "Would you like to update? [y/n] "
+        read originupdateq
+
+        if [ -z "$originupdateq" ]; then
+
+            echo "No Input Provided, Dropping Build"
+
+            exit 3
+
+        fi
+
+
+        if [ "$originupdateq" = "y" ]; then
+
+            echo ""
+
+            if [ -d "$PWD/build" ]; then
+
+                source /root/.asadt
+
+                echo "Updating ASADT '$appversion' --> '$buildv'"
+                echo "Do not close this terminal during update."
+
+                sudo rm /root/.asadt
+
+                sudo rm -r "$approot"
+
+                mkdir "$approot"
+
+                cd build
+
+                sudo cp -r config mainprog modules asadt.sh "$approot"
+
+                cd "$approot"
+
+                sudo chmod +x asadt.sh
+
+                echo "appversion='$buildv'" > /root/.asadt
+                echo "appversion_long='$buildv_long'" >> /root/.asadt
+                echo "approot='$approot'" >> /root/.asadt
+                echo "progroot='$approot/mainprog'" >> /root/.asadt
+                echo "cnfroot='$approot/config'" >> /root/.asadt
+                echo "modroot='$approot/modules'" >> /root/.asadt
+
+                echo "UPDATE COMPLETE!"
+                echo "CHECK FOR SCRIPT ERRORS BEFORE CLOSING THIS TERMINAL PROMT"
+
+                exit 1
+
+            else
+
+                echo "BUILD ERROR: CANNOT FIND '/build/" in "'"$PWD"'"
+                echo "Please ensure The working directory houses ASADT's build data!"
+
+                exit 2
+
+            fi
+
+        else
+
+            echo "UPDATE CANCELED"
+            echo "TO FRESH INSTALL ASADT PLEASE REMOVE THE FILE LOCATED @ '/root/.asadt'"
+
+            exit 3
+
+        fi
+
+    else
+
+        echo "NO UPDATE REQUIRED!"
+        echo "NO EXISTING USERREG FILE FOUND!"
+
+    fi
+
+}
+
 builder () {
 
     checkroot
     getrolling
+    updateoriginshell
     buildscript
     checkapt
 
     echo "Install Complete! To execute ASADT's shell, execute:"
-    echo "'$custominstloc/asadt.sh -h' for more help info"
+    echo "'sudo $custominstloc/asadt.sh -h' for more help info!"
 
     exit 1
 

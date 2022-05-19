@@ -1,4 +1,4 @@
-ASADT MARK II VERSION 1.0.3 HELP DOCUMENT
+ASADT MARK II VERSION 1.0.4 HELP DOCUMENT
 
 Execute: ./asadt.sh [-v] [-h] [-hh] [--updatecheck] [--scantool] [--exemkr]
 
@@ -12,7 +12,8 @@ Execute: ./asadt.sh [-v] [-h] [-hh] [--updatecheck] [--scantool] [--exemkr]
                   using "wget" command. If an update is found, you will be notified on screen.
                   In the event that a user is updating, you may be required to remove the original script
                   folder from your desired install location to fresh install ASADT. This will require root
-                  or sudo privileges.
+                  or sudo privileges. If you are planning to update the shell autonomously, on version 1.0.4 of MARK II
+                  this command will automatically download and update to newer version post the 1.0.4 update.
                   DO NOT REMOVE THE USER REGISTRY KEY FILE, IT WILL BE UPDATED AFTER RUNNING ANY NEWER VERSION OF
                   ASADT'S BUILD SCRIPT.
 
@@ -29,15 +30,17 @@ Execute: ./asadt.sh [-v] [-h] [-hh] [--updatecheck] [--scantool] [--exemkr]
                and the 0 switch represents using absolute method names like "default", "safe" etc.
                only place switches in the "NSE Type" field, and place the methods or table input into
                the "NSE Methods" field. Inputting multiple METHOD options will require the use of
-               separatory commas (ex. safe,vuln). All input must remain lowercase.
+               separatory commas (ex. safe,vuln). All input must remain lowercase. If no input is provided,
+               a use of the "defualt" NSE ScriptScan will be performed.
+
                More information on this subject can be found @
                https://nmap.org/book/nse-usage.html
 
  [--exemkr]: Added in MII-v1.0.3, this tool combines ASADT with the already existent
-             MS.F.P.C [Metasploit Framework Payload Creator] to generate both a MSF
+             MSF P.C [Metasploit Framework Payload Creator] to generate both a MSF
              payload and a MSF payload handler for device exploitation and
              penetration testing. For more help with the settings of this tool,
-             execute "msfpc -h"
+             execute "msfpc -h" on systems with this script installed.
 
 
  EDITING THE CONFIGURATION
@@ -60,6 +63,7 @@ Execute: ./asadt.sh [-v] [-h] [-hh] [--updatecheck] [--scantool] [--exemkr]
 
  If you need assistance finding the location in which you installed ASADT,
  please refer to the user registry key file located at "/root/.asadt", referred
- location is listed as "approot='*dirname*'".
+ location is listed as "approot='*dirname*'". This file is located on any system with
+ this tool installed past v. 1.0.0 of MK_II Platform.
 
  DO NOT EDIT THE USER REGISTRY KEY FILE UNLESS CHANGES ARE ABSOLUTELY NECESSARY!

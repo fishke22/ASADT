@@ -5,7 +5,7 @@ function exemkr_msfpc {
         PWD=$output_main
         cd $output_main
 
-        echo "msfpc $ptype $pnetinterface $pcmd $pconnecttype $pstagetype $plinktype $exemkr_msfpc_verbosity_enabler"
+        echo "msfpc $ptype $pnetinterface $pcmd $phport $pconnecttype $pstagetype $plinktype $exemkr_msfpc_verbosity_enabler"
         echo ""
         msfpc $ptype $pnetinterface $pcmd $phport $pconnecttype $pstagetype $plinktype $exemkr_msfpc_verbosity_enabler
 
