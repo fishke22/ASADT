@@ -1,7 +1,5 @@
-newversion='v1.0.4'
+newversion='v1.0.5'
 
-## Added 'originshellupdate' function to buildscript to help assist those attempting to update the already installed shell past MKII v. 1.0.0 .
-## Fixed issues with the EXEMkr port option.
-## Fixed program grammatical errors to dismiss confusion.
-## Added 'AWKSLEEPER' to EXEMkr because of laggy kernels losing input due to incomplete awk calls/requests.
-## Added 'AutoUpdate' promt to help assist with shell upgrades post 1.0.4
+## Fixed major flaw in 'chkupdate' function, in which every check for updates shows one available even if it isn't.
+## We apologize for any confusion this may have caused.
+## The update feature 'should' still properly install any newer versions of the program, even with this flaw.

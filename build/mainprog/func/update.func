@@ -17,7 +17,7 @@ function chkupdate {
 
     else
 
-        if [ "$newversion" = "$ppversion" ]; then
+        if [ "$newversion" = "$appversion" ]; then
 
             sudo rm $updatefile
 
@@ -27,15 +27,20 @@ function chkupdate {
 
         else
 
-            sudo rm $updatefile
-
             echo "VERSION DIFF DETECTED"
             echo "$appversion --> $newversion"
             echo "ASADT SEEMS TO BE OUT OF DATE..."
             echo ""
             echo ""
+            echo "Update Information:"
+
+            cat "$updatefile"
+
+            sudo rm "$updatefile"
+
+            echo ""
             echo "Would you like to auto-update from the main repository?"
-            echo "https://github.com/odf-community/ASADT | GIT 'MAIN'"
+            echo "https://github.com/odf-community/ASADT | BRANCH 'MAIN'"
             echo ""
             echo -n "Update Program? [y/n] "
             read updateask
@@ -60,9 +65,6 @@ function chkupdate {
                 exit 999
 
             fi
-
-
-
 
         fi
 

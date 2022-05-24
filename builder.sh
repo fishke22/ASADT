@@ -1,13 +1,13 @@
 #!/bin/bash
-# Assistive Search And Discovery Tool Mark II v104 Builder Application
+# Assistive Search And Discovery Tool Mark II v105 Builder Application
 # Licensed Under GNU GENERAL PUBLIC LICENSE
 # Script Developed & Maintained By The
 # Onetrak Digital Forensics Corporation
 
 
 builder_version="3.0.0"
-buildv="v1.0.4"
-buildv_long="MARK II BETA | v 1.0.4"
+buildv="v1.0.5"
+buildv_long="MARK II BETA | v 1.0.5"
 
 function checkroot {
 

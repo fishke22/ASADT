@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Assistive Search And Discovery Tool MARK II
-# Script Version 1.0.4
+# Assistive Search And Discovery Tool MARK II BETA
+# Script Version 1.0.5
 
 # This Script Is Developed & Maintained By The
 # Onetrak Digital Forensics Corportaion

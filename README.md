@@ -1,14 +1,13 @@
 # ASADT | Assistive Search And Discovery Tool
-Release: Mark_II-v1.0.4 <br>
-Last Update @ 5/19/2022 [ToolUpdate File](toolupdate.info)<br>
+Release: Mark_II-v1.0.5 <br>
+Last Update @ 5/23/2022 [ToolUpdate File](toolupdate.info)<br>
 
 
 # MINOR UPDATES
-Added 'originshellupdate' function to buildscript to help assist those attempting to update the already installed shell past MKII v. 1.0.0 <br>
-Fixed issues with the EXEMkr port option. <br>
-Fixed program grammatical errors to dismiss confusion. <br>
-Added 'AWKSLEEPER' to EXEMkr because of laggy kernels losing input due to incomplete awk calls/requests. <br>
-Added 'AutoUpdate' promt to help assist with shell upgrades post 1.0.4 <br>
+
+Fixed major flaw in 'chkupdate' function, in which every check for updates shows one available even if it isn't. <br>
+We apologize for any confusion this may have caused. <br>
+The update feature 'should' still properly install any newer versions of the program, even with this flaw. <br>
 
 <br>
 <br>
