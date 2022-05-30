@@ -55,7 +55,7 @@ function chkupdate {
 
             if [ "$updateask" = "y" ]; then
 
-                source "$approot/mainprog/ui/updater.uifunc"
+                source "$progroot/ui/updater.uifunc"
 
                 showzpromt
                 update_asadt_mainprogdat_safetygit

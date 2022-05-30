@@ -1,5 +1,4 @@
-newversion='v1.0.5'
+newversion='v1.0.6'
 
-## Fixed major flaw in 'chkupdate' function, in which every check for updates shows one available even if it isn't.
-## We apologize for any confusion this may have caused.
-## The update feature 'should' still properly install any newer versions of the program, even with this flaw.
+# Fixed 'source' calls to include all approot extensions
+# Added information on NEW Open-Mod Feature, and it's conceptual ideas

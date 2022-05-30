@@ -6,8 +6,8 @@
 
 
 builder_version="3.0.0"
-buildv="v1.0.5"
-buildv_long="MARK II BETA | v 1.0.5"
+buildv="v1.0.6"
+buildv_long="MARK II BETA | v 1.0.6"
 
 function checkroot {
 

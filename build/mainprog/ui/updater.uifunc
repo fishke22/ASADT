@@ -52,7 +52,7 @@ function update_asadt_mainprogdat_safetygit {
     else
 
         echo "Looks like the repository might be offline or your system is not connected to a network"
-        echo "If were offline, it's most likely for maintenance..."
+        echo "If we are offline, it's most likely for maintenance..."
 
         exit 404
 

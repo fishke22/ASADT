@@ -1,13 +1,11 @@
 # ASADT | Assistive Search And Discovery Tool
-Release: Mark_II-v1.0.5 <br>
-Last Update @ 5/23/2022 [ToolUpdate File](toolupdate.info)<br>
+Release: Mark_II-v1.0.6 <br>
+Last Update @ 5/30/2022 [ToolUpdate File](toolupdate.info)<br>
 
 
 # MINOR UPDATES
-
-Fixed major flaw in 'chkupdate' function, in which every check for updates shows one available even if it isn't. <br>
-We apologize for any confusion this may have caused. <br>
-The update feature 'should' still properly install any newer versions of the program, even with this flaw. <br>
+Fixed 'source' calls to include all approot extensions <br>
+Added information on NEW [OpenMod Feature](asadt_openmod.md), and it's conceptual ideas <br>
 
 <br>
 <br>

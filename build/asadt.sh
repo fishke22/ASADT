@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Assistive Search And Discovery Tool MARK II BETA
-# Script Version 1.0.5
+# Script Version 1.0.6
 
 # This Script Is Developed & Maintained By The
 # Onetrak Digital Forensics Corportaion
@@ -34,27 +34,27 @@ function getuserreg {
         source $userreg
 
         #MAIN PROGRAM DATA LIB
-        source $approot/mainprog/func/disphelp.func
-        source $approot/mainprog/func/dispversion.func
-        source $approot/mainprog/func/update.func
+        source $progroot/func/disphelp.func
+        source $progroot/func/dispversion.func
+        source $progroot/func/update.func
 
         # SCANTOOL LIB
-        source $approot/modules/scantool/func/assetfinder_scan.func
-        source $approot/modules/scantool/func/dmitry_scan.func
-        source $approot/modules/scantool/func/dnsmap_scan.func
-        source $approot/modules/scantool/func/nikto_scan.func
-        source $approot/modules/scantool/func/nmap_scan.func
-        source $approot/modules/scantool/gui/wiz_assetfinder.gui
-        source $approot/modules/scantool/gui/wiz_dmitry.gui
-        source $approot/modules/scantool/gui/wiz_dnsmap.gui
-        source $approot/modules/scantool/gui/wiz_nikto.gui
-        source $approot/modules/scantool/gui/wiz_nmap.gui
-        source $approot/config/scantool.config
+        source $modroot/scantool/func/assetfinder_scan.func
+        source $modroot/scantool/func/dmitry_scan.func
+        source $modroot/scantool/func/dnsmap_scan.func
+        source $modroot/scantool/func/nikto_scan.func
+        source $modroot/scantool/func/nmap_scan.func
+        source $modroot/scantool/gui/wiz_assetfinder.gui
+        source $modroot/scantool/gui/wiz_dmitry.gui
+        source $modroot/scantool/gui/wiz_dnsmap.gui
+        source $modroot/scantool/gui/wiz_nikto.gui
+        source $modroot/scantool/gui/wiz_nmap.gui
+        source $cnfroot/scantool.config
 
         # EXEMKR LIB
-        source $approot/modules/exemkr/func/msfpc_exemkr.func
-        source $approot/modules/exemkr/gui/wiz_msfpc.gui
-        source $approot/config/exemkr.config
+        source $modroot/exemkr/func/msfpc_exemkr.func
+        source $modroot/exemkr/gui/wiz_msfpc.gui
+        source $cnfroot/exemkr.config
 
     else
 
