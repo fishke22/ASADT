@@ -6,7 +6,7 @@ function disphelp {
     echo ""
     echo "Version: $appversion_long"
     echo "USAGE:"
-    echo "Execute: $0 [-v] [-h] [-hh] [--updatecheck] [--scantool+arg] [--exemkr+arg]"
+    echo "Execute: $0 [-v] [-h] [-hh] [--updatecheck] [--scantool+arg] [--brutetool+arg] [--exemkr]"
     echo ""
     echo "More information is avialable on the ASADT Wiki!"
     echo "https://github.com/odf-community/ASADT/wiki/"

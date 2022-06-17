@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Assistive Search And Discovery Tool MARK II BETA
-# Script Version 1.0.6
+# Script Version 1.0.7-1
 
 # This Script Is Developed & Maintained By The
 # Onetrak Digital Forensics Corportaion
@@ -51,6 +51,11 @@ function getuserreg {
         source $modroot/scantool/gui/wiz_nmap.gui
         source $cnfroot/scantool.config
 
+        # BRUTETOOL LIB
+        source $modroot/brutetool/func/sqlmap.func
+        source $modroot/brutetool/gui/wiz_sqlmap.gui
+        source $cnfroot/brutetool.config
+
         # EXEMKR LIB
         source $modroot/exemkr/func/msfpc_exemkr.func
         source $modroot/exemkr/gui/wiz_msfpc.gui
@@ -83,6 +88,7 @@ function mainout {
         cd "$output_main"
 
     fi
+
 
 }
 
@@ -166,6 +172,18 @@ function passvar_cmd {
         mainout
         scantool_nmapscan
 
+        exit
+
+    fi
+
+    if [[ "$cmdvar1" = "--brutetool" && "$cmdvar2" = "sqlmap" ]]; then
+
+        sqlmap_checkskip
+        wizgui_sqlmap
+        mainout
+        parsevar_sqlmap_py3
+        prev_args
+        sqlmap_exec
         exit
 
     fi

@@ -1,6 +1,6 @@
-ASADT MARK II VERSION 1.0.6 HELP DOCUMENT
+ASADT MARK II VERSION 1.0.7-1 HELP DOCUMENT
 
-Execute: ./asadt.sh [-v] [-h] [-hh] [--updatecheck] [--scantool] [--exemkr]
+Execute: ./asadt.sh [-v] [-h] [-hh] [--updatecheck] [--scantool] [--brutetool] [--exemkr]
 
  [-v]: Shows current version information, and a cool banner ;)
 
@@ -12,8 +12,7 @@ Execute: ./asadt.sh [-v] [-h] [-hh] [--updatecheck] [--scantool] [--exemkr]
                   using "wget" command. If an update is found, you will be notified on screen.
                   In the event that a user is updating, you may be required to remove the original script
                   folder from your desired install location to fresh install ASADT. This will require root
-                  or sudo privileges. If you are planning to update the shell autonomously, on version 1.0.4 of MARK II
-                  this command will automatically download and update to newer version post the 1.0.4 update.
+                  or sudo privileges. If you are planning to update the shell autonomously, on version 1.0.4 of MARK II this command will automatically download and update to newer version post the 1.0.4 update.
                   DO NOT REMOVE THE USER REGISTRY KEY FILE, IT WILL BE UPDATED AFTER RUNNING ANY NEWER VERSION OF
                   ASADT'S BUILD SCRIPT.
 
@@ -36,6 +35,10 @@ Execute: ./asadt.sh [-v] [-h] [-hh] [--updatecheck] [--scantool] [--exemkr]
                More information on this subject can be found @
                https://nmap.org/book/nse-usage.html
 
+ [--brutetool]: Requires tool option post to setting this argument.
+                Includes "sqlmap". Please note, This tool ins still in beta testing
+                and has NOT been fully implemented.
+
  [--exemkr]: Added in MII-v1.0.3, this tool combines ASADT with the already existent
              MSF P.C [Metasploit Framework Payload Creator] to generate both a MSF
              payload and a MSF payload handler for device exploitation and
@@ -57,8 +60,8 @@ Execute: ./asadt.sh [-v] [-h] [-hh] [--updatecheck] [--scantool] [--exemkr]
  Some text editors may not be able to edit the config and save it as the
  root user, we recommend using "sudo nano" to edit and save the configuration.
 
- There are 2 configuration pages as of version 1.0.3, these are
- "exemkr.config" and "scantool.config", and they are located within
+ There are 3 configuration pages as of version 1.0.7-1, these are
+ "exemkr.config", "scantool.config" & "brutetool.config" and they are located within
  ASADT program folder under the directory "config".
 
  If you need assistance finding the location in which you installed ASADT,

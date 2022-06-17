@@ -1,4 +1,8 @@
-newversion='v1.0.6'
+newversion='v1.0.7-1'
 
-# Fixed 'source' calls to include all approot extensions
-# Added information on NEW Open-Mod Feature, and it's conceptual ideas
+# Version 1.0.7-1 is a beta preview version
+# Added SQLMap to the list of available brutetool modules
+# Added advanced configuration file for the brutetool modules
+# Added 'which' tag to builder for SQLMap's user file detection
+# Fixed 'README.md' to show more pertinent information and description of the program
+# Added new GitHub wiki documents for the brutetool module, and fixed previous articles

@@ -1,0 +1,171 @@
+function sqlmap_checkskip {
+
+    if [ "$brutetool_sqlmap_enable" -eq "1" ]; then
+
+        if [ "$sqlmap_skip_to_sqlwiz" -eq "1" ]; then
+
+            echo "ASADT FULL COMPATABILITY WIZARD DISABLED!!"
+            echo ""'"$sqlmap_skip_to_sqlwiz = 1"'""
+            echo ""
+            echo "USING SQLMAP DEFAULT WIZARD!"
+            echo "sqlmap --wizard"
+
+            sqlmap --wizard
+
+            exit
+
+        fi
+
+    else
+
+        echo "sqlmap.func> Either no target URL was provided, or this function is disabled in config"
+
+        exit
+
+    fi
+
+}
+
+function parsevar_sqlmap_py3 {
+
+    if [ "$sqlmap_anontor" -eq "1" ]; then
+
+        echo "[ ON ] TOR ANON. NETWORK PROTOCOL"
+
+        sqlmap_anontor="-tor"
+
+    else
+
+        echo "[ OFF ] TOR ANON. NETWORK PROTOCOL"
+
+        sqlmap_anontor=""
+
+    fi
+
+    if [ "$sqlmap_randomhttpuseragent" -eq "1" ]; then
+
+        echo "[ ON ] RANDOMIZED HTTP HEADER / USER AGENT"
+
+        sqlmap_randomhttpuseragent="--random-agent"
+
+    else
+
+        echo "[ OFF ] RANDOMIZED HTTP HEADER / USER AGENT"
+
+        sqlmap_randomhttpuseragent=""
+
+    fi
+
+    if [ "$sqlmap_beeponfound" -eq "1" ]; then
+
+        echo "[ ON ] NOTIFICATION BEEP"
+
+        sqlmap_beeponfound="--beep"
+
+    else
+
+        echo "[ OFF ] NOTIFICATION BEEP"
+
+        sqlmap_beeponfound=""
+
+    fi
+
+    if [ "$sqlmap_usebatch" -eq "1" ]; then
+
+        echo "[ ON ] BATCH MODE"
+
+        sqlmap_usebatch="--batch"
+
+    else
+
+        echo "[ OFF ] BATCH MODE"
+
+        sqlmap_usebatch=""
+
+    fi
+
+    if [ "$sqlmap_connectioncheck" -eq "1" ]; then
+
+        echo "[ ON ] CONNECTION CHECKS"
+
+        sqlmap_connectioncheck="--check-internet"
+
+    else
+
+        echo "[ OFF ] CONNECTION CHECKS"
+
+        sqlmap_connectioncheck=""
+
+    fi
+
+    if [ "$sqlmap_parseforms" -eq "1" ]; then
+
+        echo "[ ON ] HTTP/S FORMS PARSER"
+
+        sqlmap_parseforms="--forms"
+
+    else
+
+        echo "[ OFF ] HTTP/S FORMS PARSER"
+
+        sqlmap_parseforms=""
+
+    fi
+
+    if [ "$brutetool_sqlmap_bruteforce_enable" -eq "0" ]; then
+
+        echo "[ INACTIVE ] BRUTEFORCE CHECK DATABASES"
+
+    else
+
+        echo "[ ACTIVE ] BRUTEFORCE CHECK DATABASES"
+
+    fi
+
+    if [ -z "$sqlmap_enum_args" ]; then
+
+        echo "[ INACTIVE ] BACK-END DBMS ENUM."
+
+    else
+
+        echo "[ ACTIVE ] BACK-END DBMS ENUM."
+
+    fi
+
+}
+
+function prev_args {
+
+    echo "[ SQLMAP ] VERSION ID | "$(sqlmap --version)
+    echo ""
+    echo "[ CONFIG ] $cnfroot/brutetool.config"
+    echo "[ ARGDEF ] BRUTEFORCE TYPES              | $sqlmap_brute_args"
+    echo "[ ARGDEF ] ENUMERATION TYPES             | $sqlmap_enum_args"
+    echo "[ ARGDEF ] DUMP OUTPUT FORMAT            | $sqlmap_dumpformat"
+    echo "[ ARGDEF ] VERBOSITY LEVEL               | $sqlmap_verbosity_level"
+    echo "[ ARGDEF ] TEMP DIRECTORY                | $sqlmap_tempdir"
+    echo "[ ARGDEF ] SQLMAP PYTHON SCRIPT THREADS  | $sqlmap_threads"
+    echo "[ VARDEF ] USER DEFINED OUTPUT DIRECTORY | $output_main"
+    echo "[ VARDEF ] USER DEFINED DATA STRING      | $sqlmap_datastring"
+    echo "[ VARDEF ] USER DEFINED TESTING LEVEL    | $sqlmap_tlvl"
+    echo "[ VARDEF ] USER DEFINED RISK LEVEL       | $sqlmap_rlvl"
+    echo "[ VARDEF ] USER DEFINED URL TARGET       | $targeturl"
+
+    sleep 10
+}
+
+function sqlmap_exec {
+
+    if [ "$brutetool_sqlmap_bruteforce_enable" -eq "0" ]; then
+
+        echo "sqlmap_exec.intfunc> BRUTEFORCE CHECKS ARE INACTIVE... SKIPPING!"
+
+    else
+
+        sqlmap --url "$targeturl" -v "$sqlmap_verbosity_level" --threads "$sqlmap_threads" "$sqlmap_brute_args"
+
+    fi
+
+    sqlmap --param-del="&" --url "$targeturl" --data "$sqlmap_datastring" -v "$sqlmap_verbosity_level" --level "$sqlmap_tlvl" --risk "$sqlmap_rlvl" --tmp-dir "$sqlmap_tempdir" --output-dir "$output_main" --dump-format "$sqlmap_dumpformat" --threads "$sqlmap_threads" "$sqlmap_enum_args" "$sqlmap_randomhttpuseragent" "$sqlmap_anontor" "$sqlmap_beeponfound" "$sqlmap_connectioncheck" "$sqlmap_usebatch" "$sqlmap_parseforms" "$sqlmap_showETA"
+
+}

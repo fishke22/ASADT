@@ -1,21 +1,23 @@
 # ASADT | Assistive Search And Discovery Tool
-Release: Mark_II-v1.0.6 <br>
-Last Update @ 5/30/2022 [ToolUpdate File](toolupdate.info)<br>
+Release: Mark_II-v1.0.7-1 <br>
+Last Update @ 6/16/2022 [ToolUpdate File](toolupdate.info)<br>
 
 
-# MINOR UPDATES
-Fixed 'source' calls to include all approot extensions <br>
-Added information on NEW [OpenMod Feature](asadt_openmod.md), and it's conceptual ideas <br>
+# MAJOR UPDATES
+Version 1.0.7-1 is a beta preview version <br>
+Added SQLMap to the list of available brutetool modules <br>
+Added advanced configuration file for the brutetool modules <br>
+Added 'which' tag to builder for SQLMap's user file detection <br>
+Fixed 'README.md' to show more pertinent information and description of the program <br>
+Added new GitHub wiki documents for the brutetool module, and fixed previous articles <br>
 
 <br>
 <br>
 
 ## Description
-A.S.A.D.T (Assistive Search And Discovery Tool) is a Bash (Bourne-Again Shell) Script. <br>
-It's purpose is to provide an easier way to execute network scans with some of the most popular and advanced tools, obtain output, and relay information all in one package, at the same time remaining minimalistic, fast, and easy to use. The way ASADT Functions is by attaching wizards to various network scanning and device exploitation tools that are built in to the Kali-OS* (kali-rolling*), applies pre-defined configuration too the scan scripts, then executes the scan. No more confusing script commands or long inputs, it's simplified so all thats left to do, is scan! <br>
-<br>
-ASADT's pre-defined program scripts attempt to gain the most out of all of the tools in our toolbox. If you believe one of our modules is out of date or could get even more discovery information, please let us know! <br>
-<br>
+A.S.A.D.T MKII (Assistive Search And Discovery Tool Mark Two) is a Bash (Bourne-Again Shell) Script.
+It's purpose is to provide a modular based & easily configurable network scanning, device exploitation & bruteforcing
+toolkit with select tools inside of the Kali Linux operating system. No more long commands or confusing options, ASADT simplifies the process using configuration and user input and does the dirty work for you, so you can get back to what matters, analyzing and attacking the target.
 <br>
 
 ## Installing ASADT
@@ -23,13 +25,18 @@ To properly install ASADT, please refer to [ASADT's Wiki Document on Installing 
 <br>
 <br>
 
-## Running a Scan
-For more information on how to run a scan using ASADT, Please refer to [ASADT's Wiki Document on Running a Network Scan](https://github.com/odf-community/ASADT/wiki/Running-a-Network-Scan) <br>
+## Running a Network Scan
+For more information on how to run a network scan using ASADT, please refer to [ASADT's Wiki Document on Using The ScanTool](https://github.com/odf-community/ASADT/wiki/Using-The-ScanTool) <br>
 <br>
 <br>
 
-## [NEW!] Using EXEMkr GUI
-For more information on how to use ASADT's NEW EXEMkr, please refer to [ASADT's Wiki Document on Using EXEMkr](https://github.com/odf-community/ASADT/wiki/EXEMkr-toolinfo) <br>
+## Using EXEMkr GUI
+For more information on how to use ASADT's EXEMkr, please refer to [ASADT's Wiki Document on Using EXEMkr](https://github.com/odf-community/ASADT/wiki/Using-EXEMkr) <br>
+<br>
+<br>
+
+## [NEW!] Running a Bruteforce Attack
+For more information on how to run a bruteforce attack, please refer to [ASADT's Wiki Document On Using The BruteTool](https://github.com/odf-community/ASADT/wiki/Using-The-BruteTool) <br>
 <br>
 <br>
 

@@ -1,13 +1,13 @@
 #!/bin/bash
-# Assistive Search And Discovery Tool Mark II v105 Builder Application
+# Assistive Search And Discovery Tool Mark II v107-1 Builder Application
 # Licensed Under GNU GENERAL PUBLIC LICENSE
 # Script Developed & Maintained By The
 # Onetrak Digital Forensics Corporation
 
 
-builder_version="3.0.0"
-buildv="v1.0.6"
-buildv_long="MARK II BETA | v 1.0.6"
+builder_version="3.1.0"
+buildv="v1.0.7-1"
+buildv_long="MARK II BETA | v 1.0.7-1"
 
 function checkroot {
 
@@ -43,7 +43,7 @@ function getrolling {
             echo "os_v_codename> It looks like kali-rolling wasnt detected!"
             echo "               If you currently are not running Kali-OS, please"
             echo "               ensure all of the necessary apt-sources are installed"
-            echo "               either via kali's deb repo or via the open internet."
+            echo "               either via kali's .deb repo or via the open internet."
             echo ""
             echo "dispmsg> This message will dissmiss in 30 seconds!"
             echo ""
@@ -158,7 +158,7 @@ function checkapt {
     which dmitry
     which assetfinder
     which msfpc
-
+    which sqlmap
     echo ""
 
 }
