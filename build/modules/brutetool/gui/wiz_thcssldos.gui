@@ -1,0 +1,37 @@
+function wizgui_thcssldos {
+
+    WIZGUI_thcssldos=$(
+    zenity --forms \
+    --title="ASADT BruteTool WizGUI" \
+    --text="Enter THC-SSL-DOS Variables" \
+    --separator="," \
+    --add-entry="Target IP [IP Addr.]: " \
+    --add-entry="Target Port Number [Port #]: " )
+
+    accepted=$?
+
+    if ((accepted != 0)); then
+
+        echo "wiz_thcssldos.gui> operation cancelled :("
+
+        exit
+
+    fi
+
+    targetip=$(awk -F, '{print $1}' <<<$WIZGUI_thcssldos)
+    targetport=$(awk -F, '{print $2}' <<<$WIZGUI_thcssldos)
+
+    if [ -z "$targetip" ]; then
+
+        echo "Missing Input... Please Provide Target IP Address"
+        exit
+
+    fi
+
+    if [ -z "$targetport" ]; then
+
+        echo "Missing Inout... Please Provice Target Port Number"
+        exit
+
+    fi
+}

@@ -1,23 +1,28 @@
 # ASADT | Assistive Search And Discovery Tool
-Release: Mark_II-v1.0.7-1 <br>
-Last Update @ 6/16/2022 [ToolUpdate File](toolupdate.info)<br>
+Release: Mark_II-v1.0.7-2 <br>
+Last Update @ 6/24/2022 [ToolUpdate File](toolupdate.info)<br>
 
 
 # MAJOR UPDATES
-Version 1.0.7-1 is a beta preview version <br>
-Added SQLMap to the list of available brutetool modules <br>
-Added advanced configuration file for the brutetool modules <br>
-Added 'which' tag to builder for SQLMap's user file detection <br>
-Fixed 'README.md' to show more pertinent information and description of the program <br>
-Added new GitHub wiki documents for the brutetool module, and fixed previous articles <br>
+Implemented new modular based 'source' configuration sheets for better module implementation. <br>
+Added legal disclaimer. <br>
+Added new THC-SSL-DOS tool to the brutetool toolkit. <br>
+Separated configuration file based on tool name which should allow for easier configuration editing. <br>
+Changed multiple file names for easier module integration. <br>
+Added 'which' tag in builder script to detect THC-SSL-DOS user files. <br>
+Misc. grammatical fixes, along with changes to exit codes. <br>
+<br>
+Upcoming Changes: <br>
+Adding a new command to allow for editing specific config files using a menu and "nano" package. <br>
+Adding system to save changed config files after official configuration system has been set in place. <br>
+
 
 <br>
 <br>
 
 ## Description
 A.S.A.D.T MKII (Assistive Search And Discovery Tool Mark Two) is a Bash (Bourne-Again Shell) Script.
-It's purpose is to provide a modular based & easily configurable network scanning, device exploitation & bruteforcing
-toolkit with select tools inside of the Kali Linux operating system. No more long commands or confusing options, ASADT simplifies the process using configuration and user input and does the dirty work for you, so you can get back to what matters, analyzing and attacking the target.
+It's purpose is to provide a modular based & easily configurable network scanning, device exploitation & bruteforcing toolkit with select tools inside of the Kali Linux operating system. No more long commands or confusing options, ASADT simplifies the process using configuration and user input and does the dirty work for you, so you can get back to what matters, analyzing and attacking the target.
 <br>
 
 ## Installing ASADT

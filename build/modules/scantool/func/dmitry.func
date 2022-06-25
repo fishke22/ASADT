@@ -1,0 +1,13 @@
+function scantool_dmitry {
+
+    if [ "$scantool_dmitry_enable" -eq "1" ]; then
+
+        sudo dmitry -winsepo $scantool_dmitry_default_output $targetip
+
+    else
+
+        echo "dmitry_scan.func> Either no Target was provided, or this scan is disabled"
+
+    fi
+
+}

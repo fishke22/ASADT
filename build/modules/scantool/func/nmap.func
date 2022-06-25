@@ -1,0 +1,61 @@
+function scantool_nmap {
+
+    if [ "$scantool_nmap_enable" -eq "1" ]; then
+
+        if [ "$scantool_nmap_updatedb" -eq "1" ]; then
+
+            sudo nmap -v --script-updatedb
+
+        fi
+
+        if [ "$scantool_nmap_fastscan_enable" -eq "1" ]; then
+
+            sudo nmap -F -oN "$scantool_nmap_fastscan_output" $targetip
+
+        fi
+
+        if [ "$scantool_nmap_traceroute_enable" -eq "1" ]; then
+
+            sudo nmap --traceroute -oN "$scantool_nmap_traceroute_output" $targetip
+        
+        fi
+
+        if [ "$scantool_nmap_fullscan_enable" -eq "1" ]; then
+
+            sudo nmap -v -p 1-65535 -sV -O -sS -T5 -oN "$scantool_nmap_fullscan_output" $targetip
+
+        fi
+
+        if [ "$scantool_nmap_nsescriptscan_enable" -eq "1" ]; then
+
+            if [ "$scantool_nmap_nsescripttrace" -eq "1" ]; then
+
+                echo "SCRIPTTRACE ENABLED"
+
+                scripttracecmd="--script-trace"
+
+            else
+
+                echo "st=0"
+
+            fi
+
+            if [ "$nmapscan_nsetype_define" -eq "1" ]; then
+
+                sudo nmap -v --script="$nmapscan_methods_define" $scripttracecmd -oN "$scantool_nmap_nsescriptscan_output" $targetip
+
+            else
+
+                sudo nmap -v --script=$nmapscan_methods_define $scripttracecmd -oN "$scantool_nmap_nsescriptscan_output" $targetip
+
+            fi
+        fi
+
+
+    else
+
+        echo "nmap_scan.func> Either no Target was provided, or this scan is disabled"
+
+    fi
+
+}

@@ -1,0 +1,29 @@
+function scantool_nikto {
+
+    if [ "$scantool_nikto_enable" -eq "1" ]; then
+
+        if [ "$scantool_nikto_http_enable" -eq "1" ]; then
+
+            sudo nikto -port 80 -host $targetip -output $scantool_nikto_http_output
+
+        fi
+
+        if [ "$scantool_nikto_https_enable" -eq "1" ]; then
+
+                sudo nikto -port 443 -host $targetip -output $scantool_nikto_https_output
+
+        fi
+
+        if [ "$scantool_nikto_forcessl_enable" -eq "1" ]; then
+
+            sudo nikto -port 443 -ssl -host $targetip -output $scantool_nikto_forcessl_output
+
+        fi
+
+    else
+
+        echo "nikto_scan.func> Either no Target was provided, or this scan is disabled"
+
+    fi
+
+}

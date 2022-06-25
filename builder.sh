@@ -1,13 +1,13 @@
 #!/bin/bash
-# Assistive Search And Discovery Tool Mark II v107-1 Builder Application
+# Assistive Search And Discovery Tool Mark II v107-2 Builder Application
 # Licensed Under GNU GENERAL PUBLIC LICENSE
 # Script Developed & Maintained By The
 # Onetrak Digital Forensics Corporation
 
 
 builder_version="3.1.0"
-buildv="v1.0.7-1"
-buildv_long="MARK II BETA | v 1.0.7-1"
+buildv="v1.0.7-2"
+buildv_long="MARK II BETA | v 1.0.7-2"
 
 function checkroot {
 
@@ -159,6 +159,7 @@ function checkapt {
     which assetfinder
     which msfpc
     which sqlmap
+    which thc-ssl-dos
     echo ""
 
 }

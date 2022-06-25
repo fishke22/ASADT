@@ -49,20 +49,20 @@ function chkupdate {
 
                 echo "No Input Provided... Quitting."
 
-                exit 3
+                exit
 
             fi
 
             if [ "$updateask" = "y" ]; then
 
-                source "$progroot/ui/updater.uifunc"
+                source "$progroot/ui/updater.ui"
 
                 showzpromt
                 update_asadt_mainprogdat_safetygit
 
             else
 
-                exit 999
+                exit
 
             fi
 

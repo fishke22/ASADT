@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Assistive Search And Discovery Tool MARK II BETA
-# Script Version 1.0.7-1
+# Script Version 1.0.7-2
 
 # This Script Is Developed & Maintained By The
 # Onetrak Digital Forensics Corportaion
@@ -21,7 +21,7 @@ function userstatus {
     else
 
         echo "$0 Requires Sudo Privledges"
-        exit 0
+        exit
 
     fi
 
@@ -37,29 +37,22 @@ function getuserreg {
         source $progroot/func/disphelp.func
         source $progroot/func/dispversion.func
         source $progroot/func/update.func
+        source $progroot/ui/legalwarn.ui
+        source $cnfroot/scantool.config
+        source $cnfroot/brutetool.config
+        source $cnfroot/exemkr.config
+
+        # LEGALITY NOTICE
+        warndiag_legal
 
         # SCANTOOL LIB
-        source $modroot/scantool/func/assetfinder_scan.func
-        source $modroot/scantool/func/dmitry_scan.func
-        source $modroot/scantool/func/dnsmap_scan.func
-        source $modroot/scantool/func/nikto_scan.func
-        source $modroot/scantool/func/nmap_scan.func
-        source $modroot/scantool/gui/wiz_assetfinder.gui
-        source $modroot/scantool/gui/wiz_dmitry.gui
-        source $modroot/scantool/gui/wiz_dnsmap.gui
-        source $modroot/scantool/gui/wiz_nikto.gui
-        source $modroot/scantool/gui/wiz_nmap.gui
-        source $cnfroot/scantool.config
+        mod_scantool
 
         # BRUTETOOL LIB
-        source $modroot/brutetool/func/sqlmap.func
-        source $modroot/brutetool/gui/wiz_sqlmap.gui
-        source $cnfroot/brutetool.config
+        mod_brutetool
 
         # EXEMKR LIB
-        source $modroot/exemkr/func/msfpc_exemkr.func
-        source $modroot/exemkr/gui/wiz_msfpc.gui
-        source $cnfroot/exemkr.config
+        mod_exemkr
 
     else
 
@@ -130,7 +123,7 @@ function passvar_cmd {
 
         wizgui_assetfinder
         mainout
-        scantool_assetfinderscan
+        scantool_assetfinder
 
         exit
 
@@ -140,7 +133,7 @@ function passvar_cmd {
 
         wizgui_dmitry
         mainout
-        scantool_dmitryscan
+        scantool_dmitry
 
         exit
 
@@ -150,7 +143,7 @@ function passvar_cmd {
 
         wizgui_dnsmap
         mainout
-        scantool_dnsmapscan
+        scantool_dnsmap
 
         exit
 
@@ -170,7 +163,7 @@ function passvar_cmd {
 
         wizgui_nmap
         mainout
-        scantool_nmapscan
+        scantool_nmap
 
         exit
 
@@ -184,6 +177,16 @@ function passvar_cmd {
         parsevar_sqlmap_py3
         prev_args
         sqlmap_exec
+
+        exit
+
+    fi
+
+    if [[ "$cmdvar1" = "--brutetool" && "$cmdvar2" = "thcssldos" ]]; then
+
+        wizgui_thcssldos
+        brutetool_thcssldos
+        
         exit
 
     fi
@@ -191,9 +194,7 @@ function passvar_cmd {
     if [ "$cmdvar1" = "--exemkr" ]; then
 
         wizgui_msfpc_custom
-
         mainout
-
         exemkr_msfpc
 
         exit
@@ -219,11 +220,11 @@ if [[ "$cmdvar1" = "--scantool" && -z "$cmdvar2" ]]; then
 
     echo "Prog_Error: Missing argument "'"modulename"'" after '--scantool'"
     echo "Prog_HelpMsg: Need more help? Run $0 -h or -hh"
-    exit 0
+    exit
 
 fi
 
 # UKNOWN CLAUSE
 echo "Prog_Error: Unknown Command... $0 $1 $2"
 echo "Prog_HelpMsg: Need more help? Run $0 -h or -hh"
-exit 0
+exit
